@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Talkable
+  include Previewable
 
   has_many :posts
   
