@@ -1,24 +1,31 @@
-# README
+## Ćwiczenia 4 - Service Object
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Warto zapamiętać
+- (ponownie) bardzo ważne jest **testowanie** swoich rozwiązań!
+- z callbacków korzystamy do akcji związanych z integralnością danych danego modelu
+- z service objectów korzystamy do obsługi konkretnego przypadku użycia (np. rejestracja użytkownika)
+- z concernów korzystamy do współdzielenia funkcjonalności między modelami lub między kontrolerami
 
-Things you may want to cover:
+### Zadania
 
-* Ruby version
+1. | 3p | Zmodyfikuj model `Post` tak, by przy tworzeniu zapisywał imię tworzącego go użytkownika jako `name`:
+  - dodaj migrację (pamiętaj o istniejących już w bazie rekordach)
+  - skorzystaj z odpowiedniego callbacka
 
-* System dependencies
+2. | 3p | Stwórz service object, który podanemu użytkownikowi tworzy startowy post:
+  - tworzy go tylko jeśli użytkownik nie ma żadnych postów
+  - skorzystaj z tego serwisu w `UserGenerator`
 
-* Configuration
+3. | 4p | Stwórz concern `Previewable`, który wyświetla dane o obiekcie za pomocą metod `preview`:
+  - klasowa w następujący sposób:
+    ```
+    User.preview #=> "User | name, token"
+    ```
+  - instancyjna w następujący sposób:
+    ```
+    User.first.preview #=> "User 1 | name: tomek, token: 123456789"
+    ```
+  - wyświetl wszystkie atrybuty, nie licząc `id`, `created_at` oraz `updated_at`
+  - wydziel blacklistowane atrybuty tak, by były konfigurowalne z jednego miejsca w module
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Powodzenia!
